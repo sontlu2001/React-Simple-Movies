@@ -1,4 +1,6 @@
 import { Fragment } from "react";
+import MovieCard from "./components/movie/MovieCard";
+import MovieList from "./components/movie/MovieList";
 
 function App() {
   return (
@@ -38,71 +40,17 @@ function App() {
 
       <section className="movies-layout pb-20 page-container text-white">
         <h2 className="capitalize mb-10 text-3xl font-bold">Now playing</h2>
-        <div className="movie-list grid grid-cols-4 gap-10">
-          <div className="movie-card rounded-lg p-3 bg-slate-800">
-            <img
-              src="https://cdnimg.vietnamplus.vn/uploaded/zatmzy/2019_06_12/avengersendgame2904.jpg"
-              alt=""
-              className="w-full h-[250px] object-cover rounded-lg mb-5"
-            />
-            <h3 className="mb-3 font-bold text-xl">
-              Spiderman: Homecoming
-            </h3>
-            <div className="mb-10 flex items-center justify-between text-sm opacity-50 ">
-              <span>2017</span>
-              <span>7.4</span>
-            </div>
-            <button className="w-full py-3 px-6 rounded-lg capitalize bg-primary">
-              Watch now
-            </button>
-          </div>
-        </div>
+        <MovieList></MovieList>
       </section>
 
       <section className="movies-layout pb-20 page-container text-white">
         <h2 className="capitalize mb-10 text-3xl font-bold">Top rated</h2>
-        <div className="movie-list grid grid-cols-4 gap-10">
-          <div className="movie-card rounded-lg p-3 bg-slate-800">
-            <img
-              src="https://cdnimg.vietnamplus.vn/uploaded/zatmzy/2019_06_12/avengersendgame2904.jpg"
-              alt=""
-              className="w-full h-[250px] object-cover rounded-lg mb-5"
-            />
-            <h3 className="mb-3 font-bold text-xl">
-              Spiderman: Homecoming
-            </h3>
-            <div className="mb-10 flex items-center justify-between text-sm opacity-50 ">
-              <span>2017</span>
-              <span>7.4</span>
-            </div>
-            <button className="w-full py-3 px-6 rounded-lg capitalize bg-primary">
-              Watch now
-            </button>
-          </div>
-        </div>
+          <MovieList type="top_rated"></MovieList>
       </section>
 
       <section className="movies-layout pb-20 page-container text-white">
         <h2 className="capitalize mb-10 text-3xl font-bold">Trending</h2>
-        <div className="movie-list grid grid-cols-4 gap-10">
-          <div className="movie-card rounded-lg p-3 bg-slate-800">
-            <img
-              src="https://cdnimg.vietnamplus.vn/uploaded/zatmzy/2019_06_12/avengersendgame2904.jpg"
-              alt=""
-              className="w-full h-[250px] object-cover rounded-lg mb-5"
-            />
-            <h3 className="mb-3 font-bold text-xl">
-              Spiderman: Homecoming
-            </h3>
-            <div className="mb-10 flex items-center justify-between text-sm opacity-50 ">
-              <span>2017</span>
-              <span>7.4</span>
-            </div>
-            <button className="w-full py-3 px-6 rounded-lg capitalize bg-primary">
-              Watch now
-            </button>
-          </div>
-        </div>
+          <MovieList type="popular"></MovieList>
       </section>
     </Fragment>
   );
