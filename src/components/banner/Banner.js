@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { fetcher } from "../../config";
+import { apiKey, fetcher } from "../../config";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import "swiper/scss/pagination";
@@ -8,7 +8,7 @@ import "swiper/scss/navigation";
 
 const Banner = () => {
   const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=9b3a625c85535b4f9746c7e67e91eff1`,
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`,
     fetcher
   );
   const movies = data?.results || [];
