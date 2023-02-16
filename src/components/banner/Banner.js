@@ -5,6 +5,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import "swiper/scss/pagination";
 import "swiper/scss/navigation";
+import Button from "../button/Button";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
   const { data } = useSWR(
@@ -36,8 +38,8 @@ const Banner = () => {
 };
 
 function BannerItem({ item }) {
-  const { title, poster_path } = item;
-
+  const { title, poster_path,id } = item;
+  const navigate = useNavigate();
   return (
     <div className="relative w-full h-full rounded-lg bg-white">
       <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg bg-opacity-1"></div>
@@ -59,9 +61,7 @@ function BannerItem({ item }) {
             Adventure
           </span>
         </div>
-        <button className="py-3 px-6 rounded-lg bg-primary text-white font-medium">
-          Watch Now
-        </button>
+        <Button onClick={()=> navigate(`/movie/${id}`)} className="w-auto">Watch Now</Button>
       </div>
     </div>
   );
