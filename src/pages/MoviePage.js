@@ -7,26 +7,32 @@ import { useState } from "react";
 import useDebounce from "../hooks/useDebounce";
 import { useEffect } from "react";
 
+const pageCount = 5;
 const MoviePage = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
   const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
+    `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${currentPage}`
   );
-
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
   };
   const filterDebounce = useDebounce(filter, 500);
   const { data, error } = useSWR(url, fetcher);
   const movies = data?.results || [];
-  const loading = !data && !error;
   useEffect(() => {
     if (filterDebounce)
       setUrl(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${filterDebounce}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${filterDebounce}&page=${currentPage}`
       );
-    else setUrl(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`);
-  }, [filterDebounce]);
+    else
+      setUrl(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${currentPage}`
+      );
+  }, [filterDebounce, currentPage]);
+  if (!data) return null;
+  const loading = !data && !error;
+  const { total, totalPage } = data;
 
   return (
     <div className="py-10 page-container">
@@ -71,18 +77,21 @@ const MoviePage = () => {
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke-width="1.5"
+          strokeWidth="1.5"
           stroke="currentColor"
           className="w-6 h-6 cursor-pointer"
+          onClick={()=>setCurrentPage(currentPage-1)}
         >
           <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             d="M15.75 19.5L8.25 12l7.5-7.5"
           />
         </svg>
-
-        <span className="cursor-pointer inline-block py-2 text-primary px-3 leading-none bg-white rounded-md">1</span>
+        {new Array(pageCount).fill(0).map((item,index) => (
+          <span className="cursor-pointer inline-block py-2 text-primary px-3 leading-none bg-white rounded-md"
+          onClick={()=>setCurrentPage(index+1)}>{index+1}</span>
+        ))}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -90,6 +99,7 @@ const MoviePage = () => {
           strokeWidth={1.5}
           stroke="currentColor"
           className="w-6 h-6 cursor-pointer"
+          onClick={()=>setCurrentPage(currentPage+1)}
         >
           <path
             strokeLinecap="round"
