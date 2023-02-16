@@ -32,17 +32,19 @@ const MoviePage = () => {
       );
     }
   }, [filterDebounce, currentPage]);
+
   const movies = data?.results || [];
   useEffect(() => {
     if (!data || !data.total_results) return;
     setPageCount(Math.ceil(data.total_results / itemsPerPage));
   }, [data, itemOffset]);
+  
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % data.total_results;
     setItemOffset(newOffset);
     setCurrentPage(event.selected + 1);
   };
-
+  console.log(data);
   return (
     <div className="py-10 page-container">
       <div className="flex mb-10">
