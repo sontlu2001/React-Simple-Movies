@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import MovieCard from "../components/movie/MovieCard";
-import { fetcher } from "../config";
+import { fetcher, tmdbAPI } from "../config";
 import useDebounce from "../hooks/useDebounce";
 import ReactPaginate from "react-paginate";
 
@@ -13,7 +13,7 @@ const MoviePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filter, setFilter] = useState("");
   const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/movie/popular?api_key=95f2419536f533cdaa1dadf83c606027&page=${currentPage}`
+    tmdbAPI.getMovieList('popular',currentPage)
   );
   const filterDebounce = useDebounce(filter, 500);
   const handleFilterChange = (e) => {
@@ -24,11 +24,11 @@ const MoviePage = () => {
   useEffect(() => {
     if (filterDebounce) {
       setUrl(
-        `https://api.themoviedb.org/3/search/movie?api_key=95f2419536f533cdaa1dadf83c606027&query=${filterDebounce}&page=${currentPage}`
+        tmdbAPI.getMovieSearch(filterDebounce,currentPage)
       );
     } else {
       setUrl(
-        `https://api.themoviedb.org/3/movie/popular?api_key=95f2419536f533cdaa1dadf83c606027&page=${currentPage}`
+        tmdbAPI.getMovieList('popular',currentPage)
       );
     }
   }, [filterDebounce, currentPage]);
@@ -44,7 +44,6 @@ const MoviePage = () => {
     setItemOffset(newOffset);
     setCurrentPage(event.selected + 1);
   };
-  console.log(data);
   return (
     <div className="py-10 page-container">
       <div className="flex mb-10">

@@ -3,6 +3,7 @@ import React from "react";
 const Button = ({
   onClick,
   className="",
+  widthFull=true,
   type = "button",
   bgColor = "primary",
   children,
@@ -22,7 +23,7 @@ const Button = ({
     <button
       type={type}
       onClick={onClick}
-      className={`py-3 px-6 rounded-lg w-full mt-auto ${bgClassName} ${className}`}
+      className={`py-3 px-6 rounded-lg ${widthFull?"w-full":""} mt-auto ${bgClassName} ${className}`}
     >
       {children}
     </button>

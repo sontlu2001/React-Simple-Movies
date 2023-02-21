@@ -1,6 +1,6 @@
 import React from "react";
 import useSWR from "swr";
-import { apiKey, fetcher } from "../../config";
+import { apiKey, fetcher, tmdbAPI } from "../../config";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
 import "swiper/scss/pagination";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
   const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`,
+    tmdbAPI.getMovieUpComing(),
     fetcher
   );
   const movies = data?.results || [];
@@ -45,7 +45,7 @@ function BannerItem({ item }) {
       <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg bg-opacity-1"></div>
       <img
         className="w-full h-full object-cover rounded-lg "
-        src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+        src= {tmdbAPI.imageOriginal(poster_path)}
         alt=""
       />
       <div className="absolute left-5 bottom-5 w-full text-white">
@@ -61,7 +61,7 @@ function BannerItem({ item }) {
             Adventure
           </span>
         </div>
-        <Button onClick={()=> navigate(`/movie/${id}`)} className="w-auto">Watch Now</Button>
+        <Button onClick={()=> navigate(`/movie/${id}`)} widthFull={false}>Watch Now</Button>
       </div>
     </div>
   );

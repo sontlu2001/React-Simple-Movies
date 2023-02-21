@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import { SwiperSlide,Swiper } from "swiper/react";
 import useSWR from "swr";
 import MovieCard from "../components/movie/MovieCard";
-import { apiKey, fetcher } from "../config";
+import {fetcher, tmdbAPI } from "../config";
 
 const MovieDetailPage = () => {
   const { movieId } = useParams();
-  const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`,
+  const { data } = useSWR(
+    tmdbAPI.getMovieDetail(movieId),
     fetcher
   );
   if (!data) return null;
@@ -28,7 +28,7 @@ const MovieDetailPage = () => {
       <div className="w-full max-w-[800px] mx-auto h-[500px] relative -mt-[250px] pb-10 z-10">
         <img
           className="w-full h-full object-cover rounded-xl"
-          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          src={tmdbAPI.imageOriginal(poster_path)}
           alt=""
         />
       </div>
@@ -51,7 +51,7 @@ const MovieDetailPage = () => {
         {overview}
       </p>
       <MovieCredits></MovieCredits>
-      <MoiveVideos></MoiveVideos>
+      <MovieVideos></MovieVideos>
       <MovieSimilar></MovieSimilar>
     </div>
   );
@@ -60,8 +60,8 @@ const MovieDetailPage = () => {
 // list casts
 function MovieCredits() {
   const { movieId } = useParams();
-  const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`,
+  const { data } = useSWR(
+    tmdbAPI.getMovieMeta(movieId,"credits"),
     fetcher
   );
   if (!data) return null;
@@ -77,7 +77,7 @@ function MovieCredits() {
             <div className="cast-item" key={item.id}>
               <img
                 className="w-full h-[350px] rounded object-cover mb-3"
-                src={`https://image.tmdb.org/t/p/original/${item.profile_path}`}
+                src={tmdbAPI.imageOriginal(item.profile_path)}
                 alt=""
               />
               <h3 className="text-xl font-medium">{item.name}</h3>
@@ -88,10 +88,10 @@ function MovieCredits() {
   );
 }
 
-function MoiveVideos() {
+function MovieVideos() {
   const { movieId } = useParams();
-  const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${apiKey}`,
+  const { data } = useSWR(
+    tmdbAPI.getMovieMeta(movieId,"videos"),
     fetcher
   );
   if (!data) return null;
@@ -129,16 +129,12 @@ function MoiveVideos() {
 function MovieSimilar() {
   const { movieId } = useParams();
   const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=${apiKey}`,
+    tmdbAPI.getMovieMeta(movieId,"similar"),
     fetcher
   );
   if (!data) return null;
   const { results } = data;
   if (!results || results.length <= 0) return null;
-  console.log(
-    "🚀 ~ file: MovieDetailPage.js:139 ~ MovieSimilar ~ results",
-    results
-  );
 
   return (
     <div className="py-10">
