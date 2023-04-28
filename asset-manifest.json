@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/%7Brepo-name%7D/static/css/main.43ba1cc9.css",
-    "main.js": "/%7Brepo-name%7D/static/js/main.8c31e9c3.js",
-    "static/js/503.8cb63fab.chunk.js": "/%7Brepo-name%7D/static/js/503.8cb63fab.chunk.js",
-    "static/js/493.77af1797.chunk.js": "/%7Brepo-name%7D/static/js/493.77af1797.chunk.js",
-    "static/js/468.f81bfb80.chunk.js": "/%7Brepo-name%7D/static/js/468.f81bfb80.chunk.js",
-    "static/js/787.8fbede50.chunk.js": "/%7Brepo-name%7D/static/js/787.8fbede50.chunk.js",
-    "index.html": "/%7Brepo-name%7D/index.html",
-    "main.43ba1cc9.css.map": "/%7Brepo-name%7D/static/css/main.43ba1cc9.css.map",
-    "main.8c31e9c3.js.map": "/%7Brepo-name%7D/static/js/main.8c31e9c3.js.map",
-    "503.8cb63fab.chunk.js.map": "/%7Brepo-name%7D/static/js/503.8cb63fab.chunk.js.map",
-    "493.77af1797.chunk.js.map": "/%7Brepo-name%7D/static/js/493.77af1797.chunk.js.map",
-    "468.f81bfb80.chunk.js.map": "/%7Brepo-name%7D/static/js/468.f81bfb80.chunk.js.map",
-    "787.8fbede50.chunk.js.map": "/%7Brepo-name%7D/static/js/787.8fbede50.chunk.js.map"
+    "main.css": "/React-Simple-Movies/static/css/main.43ba1cc9.css",
+    "main.js": "/React-Simple-Movies/static/js/main.cf54941d.js",
+    "static/js/503.8cb63fab.chunk.js": "/React-Simple-Movies/static/js/503.8cb63fab.chunk.js",
+    "static/js/493.77af1797.chunk.js": "/React-Simple-Movies/static/js/493.77af1797.chunk.js",
+    "static/js/468.f81bfb80.chunk.js": "/React-Simple-Movies/static/js/468.f81bfb80.chunk.js",
+    "static/js/787.8fbede50.chunk.js": "/React-Simple-Movies/static/js/787.8fbede50.chunk.js",
+    "index.html": "/React-Simple-Movies/index.html",
+    "main.43ba1cc9.css.map": "/React-Simple-Movies/static/css/main.43ba1cc9.css.map",
+    "main.cf54941d.js.map": "/React-Simple-Movies/static/js/main.cf54941d.js.map",
+    "503.8cb63fab.chunk.js.map": "/React-Simple-Movies/static/js/503.8cb63fab.chunk.js.map",
+    "493.77af1797.chunk.js.map": "/React-Simple-Movies/static/js/493.77af1797.chunk.js.map",
+    "468.f81bfb80.chunk.js.map": "/React-Simple-Movies/static/js/468.f81bfb80.chunk.js.map",
+    "787.8fbede50.chunk.js.map": "/React-Simple-Movies/static/js/787.8fbede50.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.43ba1cc9.css",
-    "static/js/main.8c31e9c3.js"
+    "static/js/main.cf54941d.js"
   ]
 }
